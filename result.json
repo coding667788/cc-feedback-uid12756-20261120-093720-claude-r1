@@ -1,0 +1,5270 @@
+{
+  "cases": [
+    {
+      "description": "A valid full-baseline proof issues a full-access credential and advances the counter.",
+      "name": "happy-path-full",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "challenge": {
+                "generation": 1
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 7,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 7,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "chain_length": 5,
+              "credential": {
+                "baseline_kind": "full",
+                "boot_counter": 7,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "scope": "full-access"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 7
+              },
+              "previous_counter": -1
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "consumed_at": 1050,
+                "consumed_by": "a-1",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "invalidated": 0,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "challenge": {
+                "consumed_at": 1050,
+                "consumed_by": "a-1",
+                "invalidated": 0
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "get_challenge",
+          "passed": true,
+          "request_id": "q1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "credentials": [
+                {
+                  "boot_counter": 7,
+                  "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                  "generation": 1,
+                  "issued_at": 1050,
+                  "revoke_reason": null,
+                  "revoked_at": null,
+                  "scope": "full-access"
+                }
+              ]
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credentials": [
+                {
+                  "boot_counter": 7,
+                  "generation": 1,
+                  "revoked_at": null,
+                  "scope": "full-access"
+                }
+              ]
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "list_credentials",
+          "passed": true,
+          "request_id": "q2"
+        }
+      ]
+    },
+    {
+      "description": "Dropping a baseline-required module is MISSING_MODULE (chain covers the whole boot).",
+      "name": "chain-missing-module",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "MISSING_MODULE",
+            "message": "required module 'kernel' is missing from the chain",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "MISSING_MODULE",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-missing"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "device": {
+                "counter_watermark": -1
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "get_device",
+          "passed": true,
+          "request_id": "q1"
+        }
+      ]
+    },
+    {
+      "description": "Two modules at each other's positions are MODULE_POSITION_MISMATCH.",
+      "name": "chain-wrong-order",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "MODULE_POSITION_MISMATCH",
+            "message": "module 'kernel' appears at position 1, baseline defines it at 2",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "MODULE_POSITION_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-order"
+        }
+      ]
+    },
+    {
+      "description": "Renumbered-but-shuffled sequence numbers are CHAIN_SEQ_ORDER.",
+      "name": "chain-sequence-order",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "CHAIN_SEQ_ORDER",
+            "message": "chain entries are not ordered by sequence number (position 1 holds seq 2)",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHAIN_SEQ_ORDER",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-seqorder"
+        }
+      ]
+    },
+    {
+      "description": "A recomputed chain whose kernel digest differs from the baseline is DIGEST_MISMATCH.",
+      "name": "chain-digest-tampered",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "DIGEST_MISMATCH",
+            "message": "module 'kernel' digest differs from baseline",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "DIGEST_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-digest"
+        }
+      ]
+    },
+    {
+      "description": "An undefined module is EXTRA_MODULE; a false critical claim is CRITICAL_MODULE_UNKNOWN.",
+      "name": "chain-extra-and-misplaced-critical",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "EXTRA_MODULE",
+            "message": "chain has 6 entries but baseline pins 5 modules",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "EXTRA_MODULE",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-extra"
+        }
+      ]
+    },
+    {
+      "description": "Tenant B publishes a baseline with identical module names; tenant A's device may not use it.",
+      "name": "cross-tenant-same-modules",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-b:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "b-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-b-full-v1",
+                "group_id": "tenant-b:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "b-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0002",
+                "generation": 1,
+                "group_id": "tenant-b:grp-1",
+                "tenant_id": "tenant-b"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "b-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-b",
+                "device_id": "syn-dev-0002",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-b",
+                "tenant_id": "tenant-b",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue-b"
+        },
+        {
+          "actual": {
+            "code": "BASELINE_GROUP_MISMATCH",
+            "message": "baseline belongs to a different device group",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "BASELINE_GROUP_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-cross"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue-a"
+        },
+        {
+          "actual": {
+            "code": "CHALLENGE_TENANT_MISMATCH",
+            "message": "challenge belongs to a different tenant",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHALLENGE_TENANT_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 10,
+          "op": "attest",
+          "passed": true,
+          "request_id": "b-cross"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0003",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-b"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 11,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "reg-c"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-c",
+                "device_id": "syn-dev-0003",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-c",
+                "tenant_id": "tenant-b",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 12,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue-c"
+        },
+        {
+          "actual": {
+            "code": "GROUP_MISMATCH",
+            "message": "attestation claims a group the device is not registered to",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "GROUP_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 13,
+          "op": "attest",
+          "passed": true,
+          "request_id": "c-group-claim"
+        }
+      ]
+    },
+    {
+      "description": "A mutated witness signature is WITNESS_SIGNATURE_INVALID; a re-linked chain is CHAIN_LINK_MISMATCH.",
+      "name": "tampered-signature",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "WITNESS_SIGNATURE_INVALID",
+            "message": "witness signature does not verify",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "WITNESS_SIGNATURE_INVALID",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-sig"
+        },
+        {
+          "actual": {
+            "code": "CHAIN_LINK_MISMATCH",
+            "message": "chain[2] link digest does not match SHA-256",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHAIN_LINK_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-link"
+        }
+      ]
+    },
+    {
+      "description": "The window is half-open: at expires_at-1 accepted, at expires_at CHALLENGE_EXPIRED, later too.",
+      "name": "challenge-exactly-expired",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 4,
+                "credential_id": "cred-88b4d567d3ac154e6aa13468",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1099,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-b03cf01b2b0f780dfdbc4d425c555b30"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 4,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "boot_counter": 4
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-edge-in"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-b",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-b",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-2"
+        },
+        {
+          "actual": {
+            "code": "CHALLENGE_EXPIRED",
+            "message": "verification time reached or passed the challenge expiry",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHALLENGE_EXPIRED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-edge-out"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-c",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-c",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-3"
+        },
+        {
+          "actual": {
+            "code": "CHALLENGE_EXPIRED",
+            "message": "verification time reached or passed the challenge expiry",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHALLENGE_EXPIRED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-late"
+        }
+      ]
+    },
+    {
+      "description": "A valid recovery proof only ever yields diagnostic-readonly, and still advances the counter.",
+      "name": "recovery-low-privilege",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-r",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-r",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "83a8251eb76044ec70a67d5526115e39fe66f78b12aebbb91c85218d9e1af105",
+              "credential": {
+                "baseline_id": "bl-rec-v1",
+                "baseline_kind": "recovery",
+                "boot_counter": 9,
+                "credential_id": "cred-c3e00aadea62faff9d1f75b8",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "diagnostic-readonly",
+                "tenant_id": "tenant-a",
+                "token": "syn-35567c7f4ea87d7f7e94b31e6116c013"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 9,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "baseline_kind": "recovery",
+                "boot_counter": 9,
+                "scope": "diagnostic-readonly"
+              },
+              "device": {
+                "counter_watermark": 9
+              },
+              "previous_counter": -1
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-r1"
+        }
+      ]
+    },
+    {
+      "description": "Asking for full-access on a recovery baseline is denied and the counter is not consumed.",
+      "name": "recovery-cannot-get-general-access",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-r",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-r",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": "RECOVERY_SCOPE_DENIED",
+            "message": "a recovery baseline may only issue diagnostic-readonly credentials",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "RECOVERY_SCOPE_DENIED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-r-deny"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "device": {
+                "counter_watermark": -1
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "get_device",
+          "passed": true,
+          "request_id": "q1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "83a8251eb76044ec70a67d5526115e39fe66f78b12aebbb91c85218d9e1af105",
+              "credential": {
+                "baseline_id": "bl-rec-v1",
+                "baseline_kind": "recovery",
+                "boot_counter": 9,
+                "credential_id": "cred-8da5cd1630b60ed9a1d3c7ec",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "diagnostic-readonly",
+                "tenant_id": "tenant-a",
+                "token": "syn-2744c07eaa5ee0fb936480c9109c23af"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 9,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "scope": "diagnostic-readonly"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-r-ok"
+        }
+      ]
+    },
+    {
+      "description": "A recovery baseline may not declare a full-privilege floor below the group minimum.",
+      "name": "recovery-cannot-lower-full-floor",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 2,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "g"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v2",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 2
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "full2"
+        },
+        {
+          "actual": {
+            "code": "RECOVERY_LOWERS_FULL_FLOOR",
+            "message": "a recovery baseline may not lower the full-privilege minimum version",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "RECOVERY_LOWERS_FULL_FLOOR",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "rec-bad"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-ok",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "baseline": {
+                "kind": "recovery",
+                "state": "published"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "rec-ok"
+        }
+      ]
+    },
+    {
+      "description": "A counter at or below the watermark is COUNTER_ROLLBACK; recovery advances the same watermark.",
+      "name": "counter-rollback",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 5,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 5,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-b",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-b",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-2"
+        },
+        {
+          "actual": {
+            "code": "COUNTER_ROLLBACK",
+            "message": "boot_counter 5 is not above the observed watermark 5",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "COUNTER_ROLLBACK",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-2"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-c",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-c",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-3"
+        },
+        {
+          "actual": {
+            "code": "COUNTER_ROLLBACK",
+            "message": "boot_counter 4 is not above the observed watermark 5",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "COUNTER_ROLLBACK",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-3"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-r",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-r",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 10,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-4"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "83a8251eb76044ec70a67d5526115e39fe66f78b12aebbb91c85218d9e1af105",
+              "credential": {
+                "baseline_id": "bl-rec-v1",
+                "baseline_kind": "recovery",
+                "boot_counter": 6,
+                "credential_id": "cred-3889ba3ba2382edc3761429c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "diagnostic-readonly",
+                "tenant_id": "tenant-a",
+                "token": "syn-e6d4a37ae090542c235cbcdf8f81bfbe"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 6,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": 5
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "device": {
+                "counter_watermark": 6
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 11,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-4"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-d",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-d",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 12,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-5"
+        },
+        {
+          "actual": {
+            "code": "COUNTER_ROLLBACK",
+            "message": "boot_counter 6 is not above the observed watermark 6",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "COUNTER_ROLLBACK",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 13,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-5"
+        }
+      ]
+    },
+    {
+      "description": "Publishing v2 supersedes v1; a proof already measured against v1 then fails closed.",
+      "name": "new-baseline-supersedes-old-proof",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 2100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v2",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 2000,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 2
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "pub-v2"
+        },
+        {
+          "actual": {
+            "code": "BASELINE_SUPERSEDED",
+            "message": "baseline 'bl-full-v1' may not issue at t=1050",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "BASELINE_SUPERSEDED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-old"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "superseded",
+                "superseded_at": 2000,
+                "superseded_by": "bl-full-v2",
+                "version": 1
+              },
+              "min_full_version": null,
+              "modules": [
+                {
+                  "critical": true,
+                  "module": "firmware",
+                  "payload_digest": "418a7ab52d6639a1ac72bac6bbf03f35be853e0b8fff17eb4adba9427882e00a",
+                  "position": 0
+                },
+                {
+                  "critical": true,
+                  "module": "bootloader",
+                  "payload_digest": "65d3c51cd1dd00cbb235817a799cbc9c61a8b70734390780fa659dd472fe244a",
+                  "position": 1
+                },
+                {
+                  "critical": true,
+                  "module": "kernel",
+                  "payload_digest": "89b0da12b2ddd14f772ea1983b84cccd4010df6e2e21d96f9ff3df8e509bec4d",
+                  "position": 2
+                },
+                {
+                  "critical": false,
+                  "module": "initramfs",
+                  "payload_digest": "fa34c86685df716f3cc432ebd1d4d343a1c67aefac6ab8136f468a2d50746f4a",
+                  "position": 3
+                },
+                {
+                  "critical": false,
+                  "module": "userspace",
+                  "payload_digest": "71c8e43619384b8ebb234fc01783ffaa01f80b27249a54801a2872a65331e7f2",
+                  "position": 4
+                }
+              ]
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "baseline": {
+                "state": "superseded",
+                "superseded_by": "bl-full-v2"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "get_baseline",
+          "passed": true,
+          "request_id": "q1"
+        },
+        {
+          "actual": {
+            "code": "DIGEST_MISMATCH",
+            "message": "module 'firmware' digest differs from baseline",
+            "replayed": false,
+            "result": null,
+            "stage": "chain",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "DIGEST_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-v2-bad"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v2",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 2000,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 2
+              },
+              "chain_length": 5,
+              "chain_root": "763367d9a9348cce0c691de4b088f04fc9713e2f8fa800ee2eb36c87321fbc0d",
+              "credential": {
+                "baseline_id": "bl-full-v2",
+                "baseline_kind": "full",
+                "boot_counter": 3,
+                "credential_id": "cred-e839ea3cf8381de761373866",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 2050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-59c30bc1f1e3d929fba4158f06a0b3c5"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 3,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "baseline": {
+                "state": "published",
+                "version": 2
+              },
+              "credential": {
+                "baseline_id": "bl-full-v2"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-v2-ok"
+        }
+      ]
+    },
+    {
+      "description": "A revoked baseline denies with BASELINE_REVOKED even to a fresh, well-formed proof.",
+      "name": "revoked-baseline",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "already_revoked": false,
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": 500,
+                "state": "revoked",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "reason": "revoked"
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "baseline": {
+                "revoked_at": 500,
+                "state": "revoked"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "revoke_baseline",
+          "passed": true,
+          "request_id": "rev"
+        },
+        {
+          "actual": {
+            "code": "BASELINE_REVOKED",
+            "message": "baseline 'bl-full-v1' may not issue at t=1050",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "BASELINE_REVOKED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-rev"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-r",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-r",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-r"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "83a8251eb76044ec70a67d5526115e39fe66f78b12aebbb91c85218d9e1af105",
+              "credential": {
+                "baseline_id": "bl-rec-v1",
+                "baseline_kind": "recovery",
+                "boot_counter": 3,
+                "credential_id": "cred-1b812aea70f6a6e1afb55c8e",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "diagnostic-readonly",
+                "tenant_id": "tenant-a",
+                "token": "syn-8f069dee3ab428972f23e6f75e70c315"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 3,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "scope": "diagnostic-readonly"
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-rec"
+        }
+      ]
+    },
+    {
+      "description": "Bad signature, version conflict and floors below the group minimum are refused.",
+      "name": "baseline-publication-rules",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "g"
+        },
+        {
+          "actual": {
+            "code": "BASELINE_SIGNATURE_INVALID",
+            "message": "baseline publisher signature does not verify",
+            "replayed": false,
+            "result": null,
+            "stage": "baseline",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "BASELINE_SIGNATURE_INVALID",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "bad-sig"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "ok"
+        },
+        {
+          "actual": {
+            "code": "BASELINE_CONFLICT",
+            "message": "a different baseline already occupies this group/kind/version",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "BASELINE_CONFLICT",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "conflict"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": true
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "duplicate": true
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "dup"
+        },
+        {
+          "actual": {
+            "code": "POLICY_NOT_MONOTONIC",
+            "message": "full_min_version may not decrease (1 -> 0)",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "POLICY_NOT_MONOTONIC",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "set_floors",
+          "passed": true,
+          "request_id": "floors-down"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 3,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "group": {
+                "full_min_version": 3
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "set_floors",
+          "passed": true,
+          "request_id": "floors-up"
+        },
+        {
+          "actual": {
+            "code": "FULL_FLOOR_NOT_MET",
+            "message": "full baseline version is below the group minimum",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "FULL_FLOOR_NOT_MET",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "below-floor"
+        }
+      ]
+    },
+    {
+      "description": "Rotation revokes credentials, invalidates challenges and preserves the counter watermark.",
+      "name": "generation-rotation",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 8,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 8,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "device": {
+                "counter_watermark": 8,
+                "device_id": "syn-dev-0001",
+                "generation": 2,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": true
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "device": {
+                "counter_watermark": 8,
+                "generation": 2
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "rotate_generation",
+          "passed": true,
+          "request_id": "rot"
+        },
+        {
+          "actual": {
+            "code": "CREDENTIAL_REVOKED",
+            "message": "credential was revoked (generation-change)",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CREDENTIAL_REVOKED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "present_credential",
+          "passed": true,
+          "request_id": "p1"
+        },
+        {
+          "actual": {
+            "code": "GENERATION_MISMATCH",
+            "message": "attestation generation is not the current device generation",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "GENERATION_MISMATCH",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-2"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-b",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 2,
+                "issued_at": 1000,
+                "nonce": "nonce-b",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-2"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "472306ad7d56d4ccc4b99b533a7e3a3b333ad6d68b5b684f403c596f32490cc6",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 9,
+                "credential_id": "cred-2cb72cc6837572f49baf91e4",
+                "device_id": "syn-dev-0001",
+                "generation": 2,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-68cfea07236a246712eb9fe9f761881b"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 9,
+                "device_id": "syn-dev-0001",
+                "generation": 2,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": 8
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "boot_counter": 9,
+                "generation": 2
+              },
+              "device": {
+                "counter_watermark": 9
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 10,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-3"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-c",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 2,
+                "issued_at": 1000,
+                "nonce": "nonce-c",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 11,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-3"
+        },
+        {
+          "actual": {
+            "code": "COUNTER_ROLLBACK",
+            "message": "boot_counter 9 is not above the observed watermark 9",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "COUNTER_ROLLBACK",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 12,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-4"
+        }
+      ]
+    },
+    {
+      "description": "Re-registering never resets the anti-rollback watermark.",
+      "name": "reregistration-keeps-watermark",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 11,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 11,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": false,
+              "device": {
+                "counter_watermark": 11,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "created": false,
+              "device": {
+                "counter_watermark": 11,
+                "generation": 1
+              },
+              "rotated": false
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "re-reg"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-b",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-b",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-2"
+        },
+        {
+          "actual": {
+            "code": "COUNTER_ROLLBACK",
+            "message": "boot_counter 11 is not above the observed watermark 11",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "COUNTER_ROLLBACK",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 8,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-2"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-b:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 9,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "b-group"
+        },
+        {
+          "actual": {
+            "code": "DEVICE_ID_CONFLICT",
+            "message": "device id already exists with a different tenant or group",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "DEVICE_ID_CONFLICT",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 10,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "conflict"
+        }
+      ]
+    },
+    {
+      "description": "The same request id replays the stored receipt; different content conflicts.",
+      "name": "request-id-idempotency",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 12,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 12,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "credential": {
+                "boot_counter": 12
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": true,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 12,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 12,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "replayed": true,
+            "result": {
+              "credential": {
+                "boot_counter": 12
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": "REQUEST_ID_CONFLICT",
+            "message": "request id was already used with different request content",
+            "replayed": false,
+            "result": null,
+            "stage": "precheck",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "REQUEST_ID_CONFLICT",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        }
+      ]
+    },
+    {
+      "description": "A second, independently valid proof for the same challenge is CHALLENGE_CONSUMED.",
+      "name": "challenge-single-use",
+      "passed": true,
+      "steps": [
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "group": {
+                "full_min_version": 1,
+                "group_id": "tenant-a:grp-1",
+                "recovery_min_version": 1
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 0,
+          "op": "create_group",
+          "passed": true,
+          "request_id": "setup-group"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 1,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-full"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-rec-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "recovery",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "duplicate": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 2,
+          "op": "publish_baseline",
+          "passed": true,
+          "request_id": "setup-recovery"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "created": true,
+              "device": {
+                "counter_watermark": -1,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "rotated": false
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 3,
+          "op": "register_device",
+          "passed": true,
+          "request_id": "setup-device"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "challenge": {
+                "challenge_id": "ch-a",
+                "device_id": "syn-dev-0001",
+                "expires_at": 1100,
+                "generation": 1,
+                "issued_at": 1000,
+                "nonce": "nonce-a",
+                "tenant_id": "tenant-a",
+                "window": "half-open [issued_at, expires_at)"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 4,
+          "op": "issue_challenge",
+          "passed": true,
+          "request_id": "c-issue"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "baseline": {
+                "baseline_id": "bl-full-v1",
+                "group_id": "tenant-a:grp-1",
+                "kind": "full",
+                "published_at": 0,
+                "revoked_at": null,
+                "state": "published",
+                "superseded_at": null,
+                "superseded_by": null,
+                "version": 1
+              },
+              "chain_length": 5,
+              "chain_root": "e4d900437ec81fcbbe4680fb55cdd93c805e824dd4416f4224631bea4d4ac4eb",
+              "credential": {
+                "baseline_id": "bl-full-v1",
+                "baseline_kind": "full",
+                "boot_counter": 13,
+                "credential_id": "cred-2f8fe63a6224321de5d0a24c",
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "issued_at": 1050,
+                "scope": "full-access",
+                "tenant_id": "tenant-a",
+                "token": "syn-de4d73c1b93b2f71cb7645db2e231086"
+              },
+              "critical_modules": [
+                "firmware",
+                "bootloader",
+                "kernel"
+              ],
+              "device": {
+                "counter_watermark": 13,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              },
+              "previous_counter": -1
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 5,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-1"
+        },
+        {
+          "actual": {
+            "code": "CHALLENGE_CONSUMED",
+            "message": "challenge was already consumed",
+            "replayed": false,
+            "result": null,
+            "stage": "commit",
+            "status": "denied"
+          },
+          "expected": {
+            "code": "CHALLENGE_CONSUMED",
+            "status": "denied"
+          },
+          "failures": [],
+          "index": 6,
+          "op": "attest",
+          "passed": true,
+          "request_id": "a-2"
+        },
+        {
+          "actual": {
+            "code": null,
+            "message": null,
+            "replayed": false,
+            "result": {
+              "device": {
+                "counter_watermark": 13,
+                "device_id": "syn-dev-0001",
+                "generation": 1,
+                "group_id": "tenant-a:grp-1",
+                "tenant_id": "tenant-a"
+              }
+            },
+            "stage": null,
+            "status": "accepted"
+          },
+          "expected": {
+            "result": {
+              "device": {
+                "counter_watermark": 13
+              }
+            },
+            "status": "accepted"
+          },
+          "failures": [],
+          "index": 7,
+          "op": "get_device",
+          "passed": true,
+          "request_id": "q1"
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "summary": {
+    "cases": 20,
+    "cases_failed": 0,
+    "cases_passed": 20,
+    "steps": 169,
+    "steps_failed": 0,
+    "steps_passed": 169
+  },
+  "title": "Offline synthetic boot-attestation audit service - replayable conformance cases"
+}
